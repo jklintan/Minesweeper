@@ -12,23 +12,6 @@ public boolean Opened[] = new boolean[SIZE];
 public int minecount[] = new int[SIZE];
 boolean lost = false, won = false;
 int bombscorrect = 0;
-
-
-class Square{
-  boolean hasMine = false;
-  boolean isOpened = false;
-  boolean hasFlag = false; 
-  int neighbourMineCount;
-  int columns;
-  int rows;
-  
-  //Constuctor
-  Square(int  xpos, int ypos, int width, int height)
-  {
-    
-  }
-  
-}
  
 void setup() {
   size(501, 501);
@@ -193,6 +176,28 @@ void mousePressed() {
       int x = i*boxsize;
       int y = j*boxsize;
       if(mouseX > x && mouseX < (x + boxsize) && mouseY > y && mouseY < (y + boxsize) && (mouseButton == LEFT)) {
+        
+        if(minecount[i*10+j]==0)//Check if surrounding cells have 0, then open them up
+        {
+          print("HELLO ZERO");
+          colors[i][j] = color(104, 10, 20);
+          Opened[(i*10)+j] = true;
+          if(i > 0 && j  > 0  && i < 9 && j < 9){
+            print("Checking surroundings");
+            int var = (i*10+j)-11;
+            print(var);
+            for( ;  var < ((i*10+j)-8); var++)
+              {
+                if(minecount[i*10+j]==0)
+                {
+                  colors[i][j] = color(104, 10, 20);
+                  Opened[(i*10)+j] = true;
+                }
+              }
+          }
+        }
+        
+        
         if(Mine[((i*10)+j)] == true)
         {
           colors[i][j] = color(0);
@@ -200,7 +205,6 @@ void mousePressed() {
         }
         else if(Flags[(i*10)+j] == true)
         {
-          print("TESTING");
           fill(0);
           text(minecount[(i*10)+j], x + boxsize / 2 - 4, y + boxsize / 2 +4);
           colors[i][j] = color(200);
