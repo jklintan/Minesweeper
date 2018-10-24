@@ -4,10 +4,12 @@ color[][] colors;
 boolean[][] mines;
 int saved_i = -1;
 int saved_j = -1;
+int SIZE = 101;
 int difficulty = 20, neighbourMineCount;
-public boolean Mine[] = new boolean[101];
-public boolean Flags[] = new boolean[101];
-public boolean Opened[] = new boolean[101];
+public boolean Mine[] = new boolean[SIZE];
+public boolean Flags[] = new boolean[SIZE];
+public boolean Opened[] = new boolean[SIZE];
+public int minecount[] = new int[SIZE];
 boolean lost = false, won = false;
 int bombscorrect = 0;
 
@@ -34,21 +36,99 @@ void setup() {
   rows = 10;
   colors = new color[columns][rows];
   frameRate(60);
-  for (int i=0; i<columns; i++) {
-    for (int j=0; j<rows; j++) {
-      colors[i][j] = color(200);
-    }
-  }
+  
+  
+  //Generating random numbers for placing of the mines
   for(int i = 0; i < difficulty; i++){
     int randnr1 = int(random(0, 9));
     int randnr2 = int(random(0, 9));
     colors[randnr1][randnr2] = color(255);
     int MineIndex = (randnr1*10)+randnr2+1;
     if(Mine[MineIndex] != true)
+    {
       Mine[MineIndex] = true;
+    }
     else
       i--;
   }
+  
+  //Calculation of neighbourMineCount and drawing the board
+    for (int i=0; i<columns; i++) {
+    for (int j=0; j<rows; j++) {
+      colors[i][j] = color(200);
+      int index = ((j*10)+i);
+      if(Mine[index] == true)
+      {
+        if(index == 0){
+          minecount[index+1] ++;
+          minecount[index+10]++;
+          minecount[index+11]++;
+        }
+        else if(i == 9 && j == 0)
+        {
+          minecount[index-1] ++;
+          minecount[index+10]++;
+          minecount[index+9]++;
+        }
+        else if(i == 0 && j == 9)
+        {
+          minecount[index-10]++;
+          minecount[index-9]++;
+          minecount[index+1]++;
+        }
+        else if(i == 9 && j == 9)
+        {
+          minecount[index-1] ++;
+          minecount[index-10]++;
+          minecount[index-11]++;
+        }
+        else if(i == 0 && j!=0 && j!=9)
+        {
+          minecount[index+1]++;
+          minecount[index-9]++;
+          minecount[index-10]++;
+          minecount[index+10]++;
+          minecount[index+11]++;
+        }
+        else if(i == 9)
+        {
+          minecount[index-1]++;
+          minecount[index-10]++;
+          minecount[index-11]++;
+          minecount[index+9]++;
+          minecount[index+10]++;
+        }
+        else if(j == 0)
+        {
+          minecount[index-1]++;
+          minecount[index+1]++;
+          minecount[index+9]++;
+          minecount[index+10]++;
+          minecount[index+11]++;
+        }
+        else if(j == 9)
+        {
+          minecount[index-1]++;
+          minecount[index+1]++;
+          minecount[index-9]++;
+          minecount[index-10]++;
+          minecount[index-11]++;
+        }
+        else{
+        minecount[index-9]++;
+        minecount[index-10]++;
+        minecount[index-11]++;
+        minecount[index-1]--;
+        minecount[index+1] ++;
+        minecount[index+9]++;
+        minecount[index+10]++;
+        minecount[index+11]++;
+        }
+        
+    }
+    }
+  }
+  print(minecount[34]);
 }
  
 void draw() {
@@ -111,6 +191,7 @@ void mousePressed() {
   }
 
 
+//Check how many flags are set out correctly
 int checkifcorrect()
 {
   int bombscorrect = 0;
@@ -123,6 +204,7 @@ int checkifcorrect()
   return bombscorrect;
 }
 
+//Gameover state
 void gameover() {
   background(64,0,0);
   fill(255,0,128);
