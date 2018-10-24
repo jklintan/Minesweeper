@@ -165,19 +165,21 @@ void draw() {
       int y = j*boxsize;
       
       
-      if(Mine[i*10+j] == true && Flags[i*10+j] == true)
+      if(Flags[i*10+j] == true && Opened[i*10+j] != true) //Mine[i*10+j] == true && 
       {
         //fill(colors[i][j]);
         fill(0);
         rect(i*boxsize, j*boxsize, boxsize, boxsize);
+        text(minecount[(i*10)+j], x + boxsize / 2 - 4, y + boxsize / 2 +4);
       }
       else
       {
         fill(colors[i][j]);
         rect(i*boxsize, j*boxsize, boxsize, boxsize);
-      }
-      fill(200);
+        fill(200);
       text(minecount[(i*10)+j], x + boxsize / 2 - 4, y + boxsize / 2 +4);
+      }
+      
     } 
   }
   
@@ -196,10 +198,17 @@ void mousePressed() {
           colors[i][j] = color(0);
           lost = true;
         }
+        else if(Flags[(i*10)+j] == true)
+        {
+          print("TESTING");
+          fill(0);
+          text(minecount[(i*10)+j], x + boxsize / 2 - 4, y + boxsize / 2 +4);
+          colors[i][j] = color(200);
+          Flags[(i*10)+j] = false;
+          colors[i][j] = color(104, 10, 20);
+          Opened[(i*10)+j] = true;
+        }
         else{
-          //fill(100, 150, 200);
-
-          //fill(255,0,0,63);
           colors[i][j] = color(104, 10, 20);
           Opened[((i*10)+j)] = true;
         }
@@ -215,7 +224,7 @@ void mousePressed() {
         }
         else
         {
-          colors[i][j] = color(255, 200, 200);
+          colors[i][j] = color(0);
           fill(0, 102, 153);
           Flags[((i*10)+j)] = true;
           bombscorrect = checkifcorrect();
