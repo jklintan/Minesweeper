@@ -124,7 +124,6 @@ for (int i=0; i<columns; i++) {
       //fill(255);
       //text(minecount[(i*10)+j], x + boxsize / 2, y + boxsize / 2);
       colors[i][j] = color(200);
-      
     }
   }
   }
@@ -135,10 +134,14 @@ void draw() {
   background(255);
   fill(0);
   text("You lost", 220,220);
+  delay(3000);
+  setup();
   }else if(bombscorrect == difficulty){
   background(255);
   fill(0);
   text("You won", 220,220);
+  delay(3000);
+  setup();
 } else {
   
   
