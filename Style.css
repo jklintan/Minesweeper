@@ -16,11 +16,11 @@ h1, h2, h3, h4{
 p, a, li {
 	font-family: 'Montserrat', sans-serif;
 	color: black;
-	border: none;
+	text-decoration: none;
 }
 
 a {
-	font-style: bold;
+	font-weight: bold;
 }
 
 a:hover{
