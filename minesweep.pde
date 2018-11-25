@@ -123,7 +123,8 @@ for (int i=0; i<columns; i++) {
       //rect(i*boxsize, j*boxsize, boxsize, boxsize);
       //fill(255);
       //text(minecount[(i*10)+j], x + boxsize / 2, y + boxsize / 2);
-      colors[i][j] = color(200);
+      colors[i][j] = color(255, 204, 0);
+      
     }
   }
   }
@@ -131,46 +132,23 @@ for (int i=0; i<columns; i++) {
  
 void draw() {
   if(lost){
-  background(255);
-  fill(0);
-  text("You lost", 220,220);
-  delay(3000);
-  setup();
+    background(40, 223, 40);
+    fill(0);
+    text("You lost", 220,220);
   }else if(bombscorrect == difficulty){
-  background(255);
-  fill(0);
-  text("You won", 220,220);
-  delay(3000);
-  setup();
-} else {
-  
-  
-  for (int i=0; i<columns; i++) {
-    for (int j=0; j<rows; j++) {
-      int x = i*boxsize;
-      int y = j*boxsize;
-      
-      
-      if(Flags[i*10+j] == true && Opened[i*10+j] != true) //Mine[i*10+j] == true && 
-      {
-        //fill(colors[i][j]);
+    //Check if all tiles are opened
+    //boolean won = allopened();
+      //if(won == true){
+        background(255, 204, 0);
         fill(0);
-        rect(i*boxsize, j*boxsize, boxsize, boxsize);
-        text(minecount[(i*10)+j], x + boxsize / 2 - 4, y + boxsize / 2 +4);
-      }
-      else
-      {
-        fill(colors[i][j]);
-        rect(i*boxsize, j*boxsize, boxsize, boxsize);
-        fill(200);
-      text(minecount[(i*10)+j], x + boxsize / 2 - 4, y + boxsize / 2 +4);
-      }
-      
-    } 
+        text("You won", 220,220);
+      //}
+      //else if(won == false){
+      //  checktile();
+      //}
+  }else {
+    checktile();
   }
-  
-}
-
 }
  
 void mousePressed() {
@@ -180,25 +158,13 @@ void mousePressed() {
       int y = j*boxsize;
       if(mouseX > x && mouseX < (x + boxsize) && mouseY > y && mouseY < (y + boxsize) && (mouseButton == LEFT)) {
         
-        if(minecount[i*10+j]==0)//Check if surrounding cells have 0, then open them up
-        {
-          print("HELLO ZERO");
-          colors[i][j] = color(104, 10, 20);
-          Opened[(i*10)+j] = true;
-          if(i > 0 && j  > 0  && i < 9 && j < 9){
-            print("Checking surroundings");
-            int surr = (i*10+j)-11;
-            print(surr);
-            for( ;  surr < ((i*10+j)-8); surr++)
-              {
-                if(minecount[i*10+j]==0)
-                {
-                  colors[i][j] = color(104, 10, 20);
-                  Opened[(i*10)+j] = true;
-                }
-              }
-          }
-        }
+        //if(minecount[i*10+j]==0)//Check if surrounding cells have 0, then open them up
+        //{
+          //print("HELLO ZERO");
+        //  colors[i][j] = color(255, 204, 0);
+          //colors[i][j] = color(104, 10, 20);
+        //  Opened[(i*10)+j] = true;
+        //}
         
         
         if(Mine[((i*10)+j)] == true)
@@ -212,11 +178,13 @@ void mousePressed() {
           text(minecount[(i*10)+j], x + boxsize / 2 - 4, y + boxsize / 2 +4);
           colors[i][j] = color(200);
           Flags[(i*10)+j] = false;
-          colors[i][j] = color(104, 10, 20);
+          colors[i][j] = color(0);
+          //colors[i][j] = color(104, 10, 20);
           Opened[(i*10)+j] = true;
         }
         else{
-          colors[i][j] = color(104, 10, 20);
+          colors[i][j] = color(0);
+          //colors[i][j] = color(104, 10, 20);
           Opened[((i*10)+j)] = true;
         }
           saved_i = i;
@@ -232,7 +200,7 @@ void mousePressed() {
         else
         {
           colors[i][j] = color(0);
-          fill(0, 102, 153);
+          fill(40, 223, 40);
           Flags[((i*10)+j)] = true;
           bombscorrect = checkifcorrect();
         }
@@ -261,4 +229,38 @@ void gameover() {
   background(64,0,0);
   fill(255,0,128);
   text("You lost.", 200, 200);
+}
+
+boolean allopened(){
+  for(int i = 0; i < SIZE-1; i++){
+      if(Opened[i] != true)
+      {
+        return false;
+      }
+  }
+  return true;
+}
+
+void checktile(){
+  for (int i=0; i<columns; i++) {
+    for (int j=0; j<rows; j++) {
+      int x = i*boxsize;
+      int y = j*boxsize;
+      
+      
+      if(Flags[i*10+j] == true && Opened[i*10+j] != true) //Mine[i*10+j] == true && 
+      {
+        fill(40, 223, 40);
+        rect(i*boxsize, j*boxsize, boxsize, boxsize);
+        text(minecount[(i*10)+j], x + boxsize / 2 - 4, y + boxsize / 2 +4);
+      }
+      else
+      {
+        fill(colors[i][j]);
+        rect(i*boxsize, j*boxsize, boxsize, boxsize);
+        fill(255, 204, 0);
+        text(minecount[(i*10)+j], x + boxsize / 2 - 4, y + boxsize / 2 +4);
+      }
+    } 
+  }
 }
