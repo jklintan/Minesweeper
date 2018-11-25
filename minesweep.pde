@@ -10,7 +10,7 @@ public boolean Mine[] = new boolean[SIZE];
 public boolean Flags[] = new boolean[SIZE];
 public boolean Opened[] = new boolean[SIZE];
 public int minecount[] = new int[SIZE];
-boolean lost = false, won = false;
+boolean lost = false, winningscreen = false;
 int bombscorrect = 0;
  
 void setup() {
@@ -25,7 +25,7 @@ void setup() {
   for(int i = 0; i < difficulty; i++){
     int randnr1 = int(random(0, 9));
     int randnr2 = int(random(0, 9));
-    //colors[randnr1][randnr2] = color(200); //to see where bombs are
+    colors[randnr1][randnr2] = color(200); //to see where bombs are
     int MineIndex = (randnr1*10)+randnr2;
     if(Mine[MineIndex] != true)
     {
@@ -137,15 +137,13 @@ void draw() {
     text("You lost", 220,220);
   }else if(bombscorrect == difficulty){
     //Check if all tiles are opened
-    //boolean won = allopened();
-      //if(won == true){
+    if(winningscreen == true){
         background(255, 204, 0);
         fill(0);
         text("You won", 220,220);
-      //}
-      //else if(won == false){
-      //  checktile();
-      //}
+     }else if(winningscreen == false){
+        checktile();
+     }
   }else {
     checktile();
   }
@@ -158,13 +156,10 @@ void mousePressed() {
       int y = j*boxsize;
       if(mouseX > x && mouseX < (x + boxsize) && mouseY > y && mouseY < (y + boxsize) && (mouseButton == LEFT)) {
         
-        //if(minecount[i*10+j]==0)//Check if surrounding cells have 0, then open them up
-        //{
-          //print("HELLO ZERO");
-        //  colors[i][j] = color(255, 204, 0);
-          //colors[i][j] = color(104, 10, 20);
-        //  Opened[(i*10)+j] = true;
-        //}
+        if(minecount[i*10+j]==0)//Check if surrounding cells have 0, then open them up
+        {
+          checksurround(i, j);
+        }
         
         
         if(Mine[((i*10)+j)] == true)
@@ -179,12 +174,10 @@ void mousePressed() {
           colors[i][j] = color(200);
           Flags[(i*10)+j] = false;
           colors[i][j] = color(0);
-          //colors[i][j] = color(104, 10, 20);
           Opened[(i*10)+j] = true;
         }
         else{
           colors[i][j] = color(0);
-          //colors[i][j] = color(104, 10, 20);
           Opened[((i*10)+j)] = true;
         }
           saved_i = i;
@@ -207,7 +200,10 @@ void mousePressed() {
       }
     }
     }
-    
+    boolean won = allopened();
+    if(won == true){
+      winningscreen = true;
+    }
   }
 
 
@@ -233,7 +229,8 @@ void gameover() {
 
 boolean allopened(){
   for(int i = 0; i < SIZE-1; i++){
-      if(Opened[i] != true)
+      print(Opened[i]);
+      if(Opened[i] != true && Mine[i] == false)
       {
         return false;
       }
@@ -246,7 +243,6 @@ void checktile(){
     for (int j=0; j<rows; j++) {
       int x = i*boxsize;
       int y = j*boxsize;
-      
       
       if(Flags[i*10+j] == true && Opened[i*10+j] != true) //Mine[i*10+j] == true && 
       {
@@ -263,4 +259,49 @@ void checktile(){
       }
     } 
   }
+}
+
+void checksurround(int column, int row){
+  //Purpose: establish 4-neighbours, if any of them 0, open and keep going
+  int index = (column*10)+row;
+  if(minecount[index] == 0 && Opened[index] == false){
+    colors[column][row] = color(0);
+    fill(104, 10, 20);
+    Opened[index] = true;
+    //First check if we are in a corner
+    if(index == 0){
+      checksurround(1, 0);
+      checksurround(0, 1);
+    }else if(index == 9){
+      checksurround(1, 9);
+      checksurround(0, 8);
+    }else if(index == 90){
+      checksurround(8, 0);
+      checksurround(9, 1);
+    }else if(index == 99){
+      checksurround(8, 9);
+      checksurround(9, 8);
+    }else if(column == 0 && row != 0 && row != 9){
+      checksurround(0, row+1);
+      checksurround(0, row-1);
+      checksurround(1, row);
+    }else if(column == 9 && row != 0 && row != 9){
+      checksurround(9, row+1);
+      checksurround(9, row-1);
+      checksurround(8, row);
+    }else if(row == 0 && column != 0 && column != 9){
+      checksurround(column+1, row);
+      checksurround(column-1, row);
+      checksurround(column, row+1);
+    }else if(row == 9 && column != 0 && column != 9){
+      checksurround(column+1, row);
+      checksurround(column-1, row);
+      checksurround(column, row-1);
+    }else{
+      checksurround(column+1, row);
+      checksurround(column-1, row);
+      checksurround(column, row-1);
+      checksurround(column, row+1);
+    }
+ } 
 }
