@@ -184,9 +184,9 @@ void mousePressed() {
           Opened[(i*10)+j] = true;
           if(i > 0 && j  > 0  && i < 9 && j < 9){
             print("Checking surroundings");
-            int var = (i*10+j)-11;
-            print(var);
-            for( ;  var < ((i*10+j)-8); var++)
+            int surr = (i*10+j)-11;
+            print(surr);
+            for( ;  surr < ((i*10+j)-8); surr++)
               {
                 if(minecount[i*10+j]==0)
                 {
