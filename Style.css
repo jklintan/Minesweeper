@@ -17,6 +17,8 @@ p, a, li {
 }
 
 .container{
+	width: 40vw;
+	height: 40vh;
 	display: flex;
 	margin: auto;
 	flex-direction: column;
@@ -28,6 +30,7 @@ p, a, li {
 
 #intro{
 	width: 40vw;
+	height: 40vh;
 	display: flex;
 	flex-direction: column;
 	position: relative;
