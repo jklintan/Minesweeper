@@ -19,6 +19,10 @@ p, a, li {
 	border: none;
 }
 
+a {
+	font-style: bold;
+}
+
 a:hover{
 	color: rgb(255, 204, 0);
 	
