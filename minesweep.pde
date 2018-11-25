@@ -229,7 +229,6 @@ void gameover() {
 
 boolean allopened(){
   for(int i = 0; i < SIZE-1; i++){
-      print(Opened[i]);
       if(Opened[i] != true && Mine[i] == false)
       {
         return false;
