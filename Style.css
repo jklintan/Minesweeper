@@ -17,8 +17,8 @@ p, a, li {
 }
 
 .container{
-	width: 40vw;
-	height: 40vh;
+	width: 500px;
+	height: 500px;
 	display: flex;
 	margin: auto;
 	flex-direction: column;
