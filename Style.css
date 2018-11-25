@@ -16,7 +16,14 @@ h1, h2, h3, h4{
 p, a, li {
 	font-family: 'Montserrat', sans-serif;
 	color: black;
+	border: none;
 }
+
+a:hover{
+	color: rgb(255, 204, 0);
+	
+}
+
 
 .container{
 	width: 500px;
