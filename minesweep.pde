@@ -14,7 +14,7 @@ boolean lost = false, won = false;
 int bombscorrect = 0;
  
 void setup() {
-  size(501, 501);
+  size(500, 500);
   columns = 10;
   rows = 10;
   colors = new color[columns][rows];
