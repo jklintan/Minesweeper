@@ -2,6 +2,7 @@ body {
 	background-color: white;
 	color: black;
     	margin: 0;
+	height: 100vh;
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
@@ -18,12 +19,14 @@ p, a, li {
 }
 
 .container{
-	width: 499px;
+	width: 500px;
 	margin: auto;
 	padding: 30px;
 }
 
 .container p{
+	padding-bottom: 10px;
+	padding-top: 10px;
 	font-size: 0.8rem;
 }
 
