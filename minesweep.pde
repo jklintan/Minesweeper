@@ -287,7 +287,7 @@ void checksurround(int column, int row){
       }else if(index == 90){
         checksurround(8, 0);
         checksurround(9, 1);
-        checksurround(8, 2);
+        checksurround(8, 1);
       }else if(index == 99){
         checksurround(8, 9);
         checksurround(9, 8);
