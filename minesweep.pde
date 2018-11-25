@@ -21,8 +21,8 @@ void setup() {
   colors = new color[columns][rows];
   frameRate(60);
   
-  String lost = "https://jklintan.github.io/minesweeper/img/losingscreen";
-  String w = "https://jklintan.github.io/minesweeper/img/winningscreen";
+  String lost = "https://jklintan.github.io/minesweeper/img/losingscreen.png";
+  String w = "https://jklintan.github.io/minesweeper/img/winningscreen.png";
   winning = loadImage(w, "png");
   losing = loadImage(lost, "png");
   
@@ -270,7 +270,7 @@ void checktile(){
 void checksurround(int column, int row){
   //Purpose: establish 4-neighbours, if any of them 0, open and keep going
   int index = (column*10)+row;
-  if(minecount[index] == 0 && Opened[index] == false){
+  if(minecount[index] == 0 && Opened[index] == false && Flags[index] == false){
     colors[column][row] = color(0);
     fill(104, 10, 20);
     Opened[index] = true;
