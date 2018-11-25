@@ -279,36 +279,52 @@ void checksurround(int column, int row){
       if(index == 0){
         checksurround(1, 0);
         checksurround(0, 1);
+        checksurround(1, 1);
       }else if(index == 9){
         checksurround(1, 9);
         checksurround(0, 8);
+        checksurround(1, 8);
       }else if(index == 90){
         checksurround(8, 0);
         checksurround(9, 1);
+        checksurround(8, 2);
       }else if(index == 99){
         checksurround(8, 9);
         checksurround(9, 8);
+        checksurround(8, 8);
       }else if(column == 0 && row != 0 && row != 9){
         checksurround(0, row+1);
         checksurround(0, row-1);
         checksurround(1, row);
+        checksurround(1, row-1);
+        checksurround(1, row+1);
       }else if(column == 9 && row != 0 && row != 9){
         checksurround(9, row+1);
         checksurround(9, row-1);
         checksurround(8, row);
+        checksurround(8, row-1);
+        checksurround(8, row+1);
       }else if(row == 0 && column != 0 && column != 9){
         checksurround(column+1, row);
         checksurround(column-1, row);
         checksurround(column, row+1);
+        checksurround(column+1, row+1);
+        checksurround(column-1, row+1);
       }else if(row == 9 && column != 0 && column != 9){
         checksurround(column+1, row);
         checksurround(column-1, row);
         checksurround(column, row-1);
+        checksurround(column+1, row-1);
+        checksurround(column-1, row-1);
       }else{
         checksurround(column+1, row);
         checksurround(column-1, row);
         checksurround(column, row-1);
         checksurround(column, row+1);
+        checksurround(column+1, row-1);
+        checksurround(column+1, row+1);
+        checksurround(column-1, row-1);
+        checksurround(column-1, row+1);
       }
     }
   } 
