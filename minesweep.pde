@@ -1,3 +1,4 @@
+PImage winning, losing;
 int boxsize = 50;
 int columns, rows;
 color[][] colors;
@@ -20,6 +21,8 @@ void setup() {
   colors = new color[columns][rows];
   frameRate(60);
   
+  winning = loadImage("winningscreen.png");
+  losing = loadImage("losingscreen.png");
   
   //Generating random numbers for placing of the mines
   for(int i = 0; i < difficulty; i++){
@@ -132,15 +135,17 @@ for (int i=0; i<columns; i++) {
  
 void draw() {
   if(lost){
-    background(40, 223, 40);
-    fill(0);
-    text("You lost", 220,220);
+    image(losing, 0, 0);
+    //background(40, 223, 40);
+    //fill(0);
+    //text("You lost", 220,220);
   }else if(bombscorrect == difficulty){
     //Check if all tiles are opened
     if(winningscreen == true){
-        background(255, 204, 0);
-        fill(0);
-        text("You won", 220,220);
+        image(winning, 0, 0);
+        //background(255, 204, 0);
+        //fill(0);
+        //text("You won", 220,220);
      }else if(winningscreen == false){
         checktile();
      }
@@ -229,7 +234,6 @@ void gameover() {
 
 boolean allopened(){
   for(int i = 0; i < SIZE-1; i++){
-      print(Opened[i]);
       if(Opened[i] != true && Mine[i] == false)
       {
         return false;
