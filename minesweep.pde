@@ -270,44 +270,46 @@ void checktile(){
 void checksurround(int column, int row){
   //Purpose: establish 4-neighbours, if any of them 0, open and keep going
   int index = (column*10)+row;
-  if(minecount[index] == 0 && Opened[index] == false && Flags[index] == false){
+  if(Opened[index] == false && Flags[index] == false){
     colors[column][row] = color(0);
     fill(104, 10, 20);
     Opened[index] = true;
-    //First check if we are in a corner
-    if(index == 0){
-      checksurround(1, 0);
-      checksurround(0, 1);
-    }else if(index == 9){
-      checksurround(1, 9);
-      checksurround(0, 8);
-    }else if(index == 90){
-      checksurround(8, 0);
-      checksurround(9, 1);
-    }else if(index == 99){
-      checksurround(8, 9);
-      checksurround(9, 8);
-    }else if(column == 0 && row != 0 && row != 9){
-      checksurround(0, row+1);
-      checksurround(0, row-1);
-      checksurround(1, row);
-    }else if(column == 9 && row != 0 && row != 9){
-      checksurround(9, row+1);
-      checksurround(9, row-1);
-      checksurround(8, row);
-    }else if(row == 0 && column != 0 && column != 9){
-      checksurround(column+1, row);
-      checksurround(column-1, row);
-      checksurround(column, row+1);
-    }else if(row == 9 && column != 0 && column != 9){
-      checksurround(column+1, row);
-      checksurround(column-1, row);
-      checksurround(column, row-1);
-    }else{
-      checksurround(column+1, row);
-      checksurround(column-1, row);
-      checksurround(column, row-1);
-      checksurround(column, row+1);
+    if(minecount[index] == 0){
+      //First check if we are in a corner
+      if(index == 0){
+        checksurround(1, 0);
+        checksurround(0, 1);
+      }else if(index == 9){
+        checksurround(1, 9);
+        checksurround(0, 8);
+      }else if(index == 90){
+        checksurround(8, 0);
+        checksurround(9, 1);
+      }else if(index == 99){
+        checksurround(8, 9);
+        checksurround(9, 8);
+      }else if(column == 0 && row != 0 && row != 9){
+        checksurround(0, row+1);
+        checksurround(0, row-1);
+        checksurround(1, row);
+      }else if(column == 9 && row != 0 && row != 9){
+        checksurround(9, row+1);
+        checksurround(9, row-1);
+        checksurround(8, row);
+      }else if(row == 0 && column != 0 && column != 9){
+        checksurround(column+1, row);
+        checksurround(column-1, row);
+        checksurround(column, row+1);
+      }else if(row == 9 && column != 0 && column != 9){
+        checksurround(column+1, row);
+        checksurround(column-1, row);
+        checksurround(column, row-1);
+      }else{
+        checksurround(column+1, row);
+        checksurround(column-1, row);
+        checksurround(column, row-1);
+        checksurround(column, row+1);
+      }
     }
- } 
+  } 
 }
