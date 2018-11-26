@@ -196,8 +196,10 @@ void mousePressed() {
       {
         if(Opened[((i*10)+(j))] == true)
         {
-        }
-        else
+        }else if((Flags[(i*10)+j]) == true){
+          colors[i][j] = color(255, 204, 0);
+          Flags[(i*10)+j] = false;
+        }else
         {
           colors[i][j] = color(0);
           fill(40, 223, 40);
