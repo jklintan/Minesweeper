@@ -21,8 +21,8 @@ void setup() {
   colors = new color[columns][rows];
   frameRate(60);
   
-  String lost = "https://jklintan.github.io/minesweeper/img/losingscreen";
-  String w = "https://jklintan.github.io/minesweeper/img/winningscreen";
+  String lost = "https://jklintan.github.io/Minesweeper/img/losingscreen";
+  String w = "https://jklintan.github.io/Minesweeper/img/winningscreen";
   winning = loadImage(w, "png");
   losing = loadImage(lost, "png");
   
