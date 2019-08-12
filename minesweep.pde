@@ -3,7 +3,7 @@
 /* Change the appearance of the game */
 int boxsize = 40; //Change the size of the boxes
 int rowsAndcols = 20; //Change the number of rows and columns
-int numbBombs = 50; //Change the number of bombs
+int numbBombs = rowsAndcols*rowsAndcols/5; //Change the number of bombs
 
 //Note if changing of boxsize and/or rowsAndcols, remember to change canvas size in setup()
 
@@ -16,7 +16,7 @@ int saved_j = -1;
 boolean lost = false, winningscreen = false;
 int bombscorrect = 0;
 int neighbourMineCount;
-int SIZE = rowsAndcols*rowsAndcols +1;
+int SIZE = rowsAndcols*rowsAndcols+1;
 
 //Saving the state of each square
 boolean Mine[] = new boolean[SIZE];
@@ -48,15 +48,19 @@ void setup() {
     //colors[randnr1][randnr2] = color(200); //to see where bombs are when debugging
     
     //If no mine placed at that position before place it, else generate new bomb
-    int MineIndex = (randnr1*(rowsAndcols))+randnr2;
-    if(Mine[MineIndex] != true){
-      Mine[MineIndex] = true;
-    }else
+    int MineIndex = (randnr1*(rowsAndcols))+randnr2; 
+    if(MineIndex > rowsAndcols*rowsAndcols-1){ //Check if index out of range
       i--;
+    }else{
+      if(Mine[MineIndex] != true){
+        Mine[MineIndex] = true;
+      }else
+        i--;
+      }
     }
   
   //Calculation of neighbourMineCount and drawing the board
-    for (int i=0; i<SIZE; i++) {
+    for (int i=0 ; i < SIZE; i++) {
       if(Mine[i] == true){
         if(i == 0){
           minecount[i+1] ++;
