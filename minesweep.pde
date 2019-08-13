@@ -1,8 +1,8 @@
 /* RADIOACTIVE MINESWEEPER - MADE BY JOSEFINE KLINTBERG 2018 */
 
 /* Change the appearance of the game */
-int boxsize = 40; //Change the size of the boxes
-int rowsAndcols = 20; //Change the number of rows and columns
+int boxsize = 60; //Change the size of the boxes
+int rowsAndcols = 10; //Change the number of rows and columns
 int numbBombs = rowsAndcols*rowsAndcols/5; //Change the number of bombs
 
 //Note if changing of boxsize and/or rowsAndcols, remember to change canvas size in setup()
@@ -16,7 +16,7 @@ int saved_j = -1;
 boolean lost = false, winningscreen = false;
 int bombscorrect = 0;
 int neighbourMineCount;
-int SIZE = rowsAndcols*rowsAndcols+1;
+int SIZE = rowsAndcols*rowsAndcols;
 
 //Saving the state of each square
 boolean Mine[] = new boolean[SIZE];
@@ -30,7 +30,7 @@ void setup() {
   
   //Setup the board
   int boardsize = boxsize*rowsAndcols;
-  size(800, 800); //Size of canvas is boardsize*boardsize
+  size(600, 600); //Size of canvas is boardsize*boardsize
   columns = rows = rowsAndcols;
   colors = new color[columns][rows];
   frameRate(60);
@@ -256,7 +256,7 @@ void gameover() {
 
 //Check if all tiles are opened
 boolean allopened(){
-  for(int i = 0; i < SIZE-1; i++){
+  for(int i = 0; i < SIZE; i++){
     if(Opened[i] != true && Mine[i] == false){
       return false;
     }
