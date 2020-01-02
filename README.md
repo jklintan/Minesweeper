@@ -12,7 +12,7 @@ Each cell also needs to have a "count" on how many mines that particular cell is
 
 <img src="./imagesMinesweeper/mine3.png" width="400"/><img src="./imagesMinesweeper/minedev.png" width="400"/>
 <br/>
-<center><i>Setting up of a grid with square cells. In early development I used grey colors and red to mark the mines. Each cell contains info about mines, flagged, opened and number of neighbouring mines.</i></center>
+<p><center><i>Setting up of a grid with square cells. In early development I used grey colors and red to mark the mines. Each cell contains info about mines, flagged, opened and number of neighbouring mines.</i></center></p>
 
 <p>Each time that the player left clicks on a cell that cell is being marked as opened. If the cell contains a mine, the player loses, otherwise keep playing. If a cell is opened that has 0 mines as neighbours I use an auxiliary function that check the surroundings around that cell, opens them up and check for more zeros. It is recursive so if a neighbouring cell also are 0, that cells surroundings are opened as well.
 
@@ -22,6 +22,6 @@ If all cells that contains a mine has being marked as flagged and all the other 
 
 <img src="./imagesMinesweeper/mine3.png" width="400"/><img src="./imagesMinesweeper/minedev.png" width="400"/>
 <br/>
-<center><i>Adding of the function that opens up neighbouring cells if a mine has 0 neighbouring mines.</i></center>
+<p><center><i>Adding of the function that opens up neighbouring cells if a mine has 0 neighbouring mines.</i></center></p>
 
 <p>This was a fun project that I learned a lot from, even though I would like to improve it further by optimizing the data structures used (only use 2D arrays to remove the convertion step with the index for example) and to divide the steps into more functions to keep the setup and draw functions more clean. I see that I would have liked to use a more object-oriented approach, and it might be something that I do in the future, to remake it this way.</p>
