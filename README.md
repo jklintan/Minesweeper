@@ -10,7 +10,7 @@ This project started after I was challenged by a friend to each one of us code a
 
 Each cell also needs to have a "count" on how many mines that particular cell is neighbour to. In the initialization I go through the whole board and for each cell it updates the count for each neighbouring cell. When this is done the numbers are stored in an array and the board is drawn. Another array is used to store if a cell is opened or not, in the beginning all is closed.</p>
 
-<img src="./imagesMinesweeper/mine3.png" width="300"/><img src="./imagesMinesweeper/minedev.png" width="300"/>
+<img src="./imagesMinesweeper/mine3.png" width="500"/><img src="./imagesMinesweeper/minedev.png" width="500"/>
 <br/>
 <center><i>Setting up of a grid with square cells. In early development I used grey colors and red to mark the mines. Each cell contains info about mines, flagged, opened and number of neighbouring mines.</i></center>
 
@@ -20,7 +20,7 @@ When the player right clicks on a cell, that cell is being marked as flagged and
 
 If all cells that contains a mine has being marked as flagged and all the other cells has being marked as opened, the player wins.</p>
 
-<img src="./imagesMinesweeper/mine3.png" width="300"/><img src="./imagesMinesweeper/minedev.png" width="300"/>
+<img src="./imagesMinesweeper/mine3.png" width="500"/><img src="./imagesMinesweeper/minedev.png" width="500"/>
 <br/>
 <center><i>Adding of the function that opens up neighbouring cells if a mine has 0 neighbouring mines.</i></center>
 
