@@ -20,7 +20,7 @@ When the player right clicks on a cell, that cell is being marked as flagged and
 
 If all cells that contains a mine has being marked as flagged and all the other cells has being marked as opened, the player wins.</p>
 
-<img src="./imagesMinesweeper/mine3.png" width="400"/><img src="./imagesMinesweeper/minedev.png" width="400"/>
+<img src="./imagesMinesweeper/mine1.png" width="400"/><img src="./imagesMinesweeper/mine.png" width="400"/>
 <br/>
 <p><center><i>Adding of the function that opens up neighbouring cells if a mine has 0 neighbouring mines.</i></center></p>
 
