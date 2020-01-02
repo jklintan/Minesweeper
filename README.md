@@ -10,7 +10,7 @@ This project started after I was challenged by a friend to each one of us code a
 
 Each cell also needs to have a "count" on how many mines that particular cell is neighbour to. In the initialization I go through the whole board and for each cell it updates the count for each neighbouring cell. When this is done the numbers are stored in an array and the board is drawn. Another array is used to store if a cell is opened or not, in the beginning all is closed.</p>
 
-<img src="./imagesMinesweeper/mine3.jpg/><img src="./imagesMinesweeper/minedev.jpg/>
+<img src="./imagesMinesweeper/mine3.png/><img src="./imagesMinesweeper/minedev.png/>
 <center><i>Setting up of a grid with square cells. In early development I used grey colors and red to mark the mines. Each cell contains info about mines, flagged, opened and number of neighbouring mines.</i></center>
 
 <p>Each time that the player left clicks on a cell that cell is being marked as opened. If the cell contains a mine, the player loses, otherwise keep playing. If a cell is opened that has 0 mines as neighbours I use an auxiliary function that check the surroundings around that cell, opens them up and check for more zeros. It is recursive so if a neighbouring cell also are 0, that cells surroundings are opened as well.
@@ -19,7 +19,7 @@ When the player right clicks on a cell, that cell is being marked as flagged and
 
 If all cells that contains a mine has being marked as flagged and all the other cells has being marked as opened, the player wins.</p>
 
-<img src="./imagesMinesweeper/mine3.jpg/><img src="./imagesMinesweeper/minedev.jpg/>
+<img src="./imagesMinesweeper/mine3.png/><img src="./imagesMinesweeper/minedev.png/>
 <center><i>Adding of the function that opens up neighbouring cells if a mine has 0 neighbouring mines.</i></center>
 
 <p>This was a fun project that I learned a lot from, even though I would like to improve it further by optimizing the data structures used (only use 2D arrays to remove the convertion step with the index for example) and to divide the steps into more functions to keep the setup and draw functions more clean. I see that I would have liked to use a more object-oriented approach, and it might be something that I do in the future, to remake it this way.</p>
